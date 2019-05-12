@@ -83,7 +83,7 @@ public class Card implements Comparable<Card> {
     }
 
     @Override
-    public int compareTo(Card otherCard) {
+    public int compareTo(Card otherCard) { //比较大小
         return this.value.compareTo(otherCard.value);
     }
 
