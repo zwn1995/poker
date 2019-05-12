@@ -1,0 +1,51 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'info.solidsoft.pitest'
+apply plugin: 'jacoco'
+apply plugin: 'sonar-runner'
+
+repositories {
+    mavenCentral()
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'info.solidsoft.gradle.pitest:gradle-pitest-plugin:1.1.6'
+    }
+}
+
+pitest {
+    targetClasses = ['poker.*'];
+}
+
+jacoco {
+    toolVersion = '0.7.5.201505241946'
+}
+
+sonarRunner {
+    toolVersion = '2.4'
+}
+
+sonarRunner {
+    sonarProperties {
+        property 'sonar.projectName', 'KataPokerHands'
+    }
+}
+
+jar {
+    baseName = 'kata-poker-hands'
+    version =  '0.1.0'
+}
+
+dependencies {
+    compile 'org.slf4j:slf4j-api:1.7.12'
+    testCompile 'junit:junit:4.12'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.7'
+}
